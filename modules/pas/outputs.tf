@@ -14,6 +14,10 @@ output "tcp_domain" {
   value = "${replace(element(concat(google_dns_record_set.tcp-dns.*.name, list("")), 0), "/\\.$/", "")}"
 }
 
+output "mesh_domain" {
+  value = "${replace(element(concat(google_dns_record_set.wildcard-mesh-dns.*.name, list("")), 0), "/\\.$/", "")}"
+}
+
 output "buildpacks_bucket" {
   value = "${element(concat(google_storage_bucket.buildpacks.*.name, list("")), 0)}"
 }

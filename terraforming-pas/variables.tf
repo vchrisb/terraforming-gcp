@@ -112,6 +112,39 @@ variable "create_tcp_router" {
 }
 
 ///******************
+// * Mesh Options *
+// ******************/
+
+variable "mesh_ssl_cert" {
+  type        = "string"
+  description = "The contents of an SSL certificate to be used by the mesh LB, optional if `mesh_ssl_ca_cert` is provided"
+  default     = ""
+}
+
+variable "mesh_ssl_private_key" {
+  type        = "string"
+  description = "The contents of an SSL private key to be used by the mesh LB, optional if `mesh_ssl_ca_cert` is provided"
+  default     = ""
+}
+
+variable "mesh_ssl_ca_cert" {
+  type        = "string"
+  description = "The contents of a CA public key to be used to sign the generated mesh LB certificate, optional if `mesh_ssl_cert` is provided"
+  default     = ""
+}
+
+variable "mesh_ssl_ca_private_key" {
+  type        = "string"
+  description = "the contents of a CA private key to be used to sign the generated mesh LB certificate, optional if `mesh_ssl_cert` is provided"
+  default     = ""
+}
+
+variable "create_mesh_lb" {
+  description = "Create google load balancer for service mesh"
+  default     = false
+}
+
+///******************
 // * OpsMan Options *
 // ******************/
 

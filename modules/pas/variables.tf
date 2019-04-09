@@ -42,11 +42,18 @@ variable "create_gcs_buckets" {}
 
 variable "create_tcp_router" {}
 
+variable "create_mesh_lb" {}
+
 variable "buckets_location" {}
 
 variable "ssl_certificate" {
   type = "string"
 }
+
+variable "mesh_ssl_certificate" {
+  type = "string"
+}
+
 
 variable "external_database" {
   default = false

@@ -74,3 +74,13 @@ resource "google_dns_record_set" "tcp-dns" {
 
   rrdatas = ["${var.internetless ? local.haproxy_static_ip : module.tcprouter.address}"]
 }
+
+resource "google_dns_record_set" "wildcard-mesh-dns" {
+  name = "*.mesh.${var.dns_zone_dns_name}"
+  type = "A"
+  ttl  = 300
+  count = "${var.create_mesh_lb ? 1 : 0}"
+  managed_zone = "${var.dns_zone_name}"
+
+  rrdatas = ["${var.global_lb ? module.mesh.global_address : module.mesh.address}"]
+}

@@ -63,6 +63,20 @@ module "pas_certs" {
   ssl_ca_private_key = "${var.ssl_ca_private_key}"
 }
 
+module "pas_mesh_certs" {
+  source = "../modules/certs"
+
+  subdomains    = ["*.mesh"]
+  env_name      = "${var.env_name}"
+  dns_suffix    = "${var.dns_suffix}"
+  resource_name = "pas-mesh-lbcert"
+
+  ssl_cert           = "${var.mesh_ssl_cert}"
+  ssl_private_key    = "${var.mesh_ssl_private_key}"
+  ssl_ca_cert        = "${var.mesh_ssl_ca_cert}"
+  ssl_ca_private_key = "${var.mesh_ssl_ca_private_key}"
+}
+
 module "pas" {
   source = "../modules/pas"
 
@@ -76,12 +90,14 @@ module "pas" {
   global_lb          = "${var.global_lb}"
   create_gcs_buckets = "${var.create_gcs_buckets}"
   create_tcp_router  = "${var.create_tcp_router}"
+  create_mesh_lb     = "${var.create_mesh_lb}"
   buckets_location   = "${var.buckets_location}"
 
   network           = "${module.infra.network}"
   dns_zone_name     = "${module.infra.dns_zone_name}"
   dns_zone_dns_name = "${module.infra.dns_zone_dns_name}"
   ssl_certificate   = "${module.pas_certs.ssl_certificate}"
+  mesh_ssl_certificate   = "${module.pas_mesh_certs.ssl_certificate}"
 
   isoseg_lb_name    = "${module.isolation_segment.load_balancer_name}"
   external_database = "${var.external_database}"

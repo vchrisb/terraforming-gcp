@@ -48,6 +48,38 @@ module "gorouter" {
 
 }
 
+module "mesh" {
+  source = "../load_balancer"
+
+  env_name = "${var.env_name}"
+  name     = "${var.env_name}-mesh"
+
+  global                     = "${var.global_lb}"
+  url_map_name               = "${var.env_name}-mesh"
+  http_proxy_name            = "${var.env_name}-mesh-http-proxy"
+  https_proxy_name           = "${var.env_name}-mesh-https-proxy"
+  http_forwarding_rule_name  = "${var.env_name}-mesh-lb-http"
+  https_forwarding_rule_name = "${var.env_name}-mesh-lb-https"
+
+  count           = "${var.create_mesh_lb ? 1 : 0}"
+  network         = "${var.network}"
+  zones           = "${var.zones}"
+  ssl_certificate = "${var.mesh_ssl_certificate}"
+
+  ports = ["80", "443"]
+
+  lb_name               = "${var.env_name}-${var.global_lb ? "mesh-httpslb" : "mesh-tcplb"}"
+  forwarding_rule_ports = ["80", "443"]
+
+  health_check                     = true
+  health_check_port                = "8080"
+  health_check_interval            = 5
+  health_check_timeout             = 3
+  health_check_healthy_threshold   = 6
+  health_check_unhealthy_threshold = 3
+
+}
+
 module "websocket" {
   source = "../load_balancer"
 

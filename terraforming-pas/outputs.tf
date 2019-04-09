@@ -124,6 +124,10 @@ output "tcp_domain" {
   value = "${module.pas.tcp_domain}"
 }
 
+output "mesh_domain" {
+  value = "${module.pas.mesh_domain}"
+}
+
 output "ws_router_pool" {
   value = "${module.pas.ws_router_pool}"
 }
