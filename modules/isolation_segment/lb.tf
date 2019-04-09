@@ -24,6 +24,7 @@ module "isoseg" {
 
   health_check                     = true
   health_check_port                = "8080"
+  health_check_endpoint            = "/health"
   health_check_interval            = 5
   health_check_timeout             = 3
   health_check_healthy_threshold   = 6

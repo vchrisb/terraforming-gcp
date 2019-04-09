@@ -36,6 +36,10 @@ variable "health_check_port" {
   default = 0
 }
 
+variable "health_check_endpoint" {
+  type    = "string"
+}
+
 variable "health_check_interval" {
   default = 0
 }
