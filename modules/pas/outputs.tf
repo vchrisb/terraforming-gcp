@@ -79,7 +79,11 @@ output "services_subnet_name" {
 }
 
 output "lb_name" {
-  value = "${var.global_lb > 0 ? module.gorouter.backend_service_name : module.gorouter.name}"
+  value = "${var.global_lb ? module.gorouter.backend_service_name : module.gorouter.name}"
+}
+
+output "mesh_lb_name" {
+  value = "${var.global_lb ? module.mesh.backend_service_name : module.mesh.name}"
 }
 
 output "cf_ws_address" {

@@ -204,6 +204,14 @@ output "http_lb_backend_name" {
   value = "${module.pas.lb_name}"
 }
 
+output "mesh_lb_name" {
+  value = "${module.pas.mesh_lb_name}"
+}
+
+output "http_mesh_lb_backend_name" {
+  value = "${module.pas.mesh_lb_name}"
+}
+
 output "cf_ws_address" {
   value = "${module.pas.cf_ws_address}"
 }
