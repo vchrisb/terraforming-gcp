@@ -76,7 +76,7 @@ resource "google_dns_record_set" "tcp-dns" {
 }
 
 resource "google_dns_record_set" "wildcard-mesh-dns" {
-  name = "*.mesh.${var.dns_zone_dns_name}"
+  name = "*.mesh.apps.${var.dns_zone_dns_name}"
   type = "A"
   ttl  = 300
   count = "${var.create_mesh_lb ? 1 : 0}"
