@@ -38,6 +38,7 @@ variable "health_check_port" {
 
 variable "health_check_endpoint" {
   type    = "string"
+  default = "/health"
 }
 
 variable "health_check_interval" {
