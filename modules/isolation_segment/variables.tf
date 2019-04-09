@@ -25,3 +25,5 @@ variable "internetless" {}
 variable "ssl_certificate" {}
 
 variable "replicated_suffix" {}
+
+variable "global_lb" {}

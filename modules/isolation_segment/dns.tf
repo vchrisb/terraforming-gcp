@@ -1,5 +1,6 @@
 locals {
   haproxy_static_ip = "${cidrhost(var.pas_subnet_cidr, -19)}"
+  isoseg_address        = "${var.global_lb ? module.isoseg.global_address : module.isoseg.address}"
 }
 
 resource "google_dns_record_set" "wildcard-iso-dns" {
@@ -10,5 +11,5 @@ resource "google_dns_record_set" "wildcard-iso-dns" {
 
   managed_zone = "${var.dns_zone_name}"
 
-  rrdatas = ["${var.internetless ? local.haproxy_static_ip : google_compute_global_address.isoseg.address}"]
+  rrdatas = ["${var.internetless ? local.haproxy_static_ip : local.isoseg_address}"]
 }

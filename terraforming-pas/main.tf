@@ -129,6 +129,7 @@ module "isolation_segment" {
   env_name          = "${var.env_name}"
   zones             = "${var.zones}"
   internetless      = "${var.internetless}"
+  global_lb          = "${var.global_lb}"
   dns_zone_dns_name = "${var.env_name}.${var.dns_suffix}"
   with_firewalls    = "${var.iso_seg_with_firewalls}"
 
