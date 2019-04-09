@@ -11,7 +11,7 @@ module "isoseg" {
   http_forwarding_rule_name  = "${var.env_name}-isoseg-lb-http"
   https_forwarding_rule_name = "${var.env_name}-isoseg-lb-https"
 
-  count           = "1"
+  count           = "${var.count}"
   network         = "${var.network}"
   zones           = "${var.zones}"
   ssl_certificate = "${var.ssl_certificate}"
